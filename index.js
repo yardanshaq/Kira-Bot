@@ -286,7 +286,7 @@ const startSock = async () => {
               if (handler) {
                 const jid = m.key.remoteJid
                 const prefix = null
-                const text = m.text.slice(command.length).trim();
+                const text = m.text.slice(command.length).trim() || null;
                 if (text === '-h') {
                   await wa.sendText(m.chatId, pluginHelpSerialize(handler))
                 } else {
@@ -303,7 +303,7 @@ const startSock = async () => {
                 handler = plugins.get(command);
                 if (handler) {
                   const jid = m.key.remoteJid
-                  const text = textNoPrefix.slice(command.length).trim();
+                  const text = textNoPrefix.slice(command.length).trim() || null;
                   if (text === '-h') {
                     await wa.sendText(m.chatId, pluginHelpSerialize(handler))
                   } else {

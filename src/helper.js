@@ -475,4 +475,6 @@ export class Category {
     static TOOL = 'tool'
     static ADVANCED = 'advanced'
     static KOSONG = 'kosongan'
+    static OWNER = 'owner'
+    static DEBUG = 'debug'
 }
