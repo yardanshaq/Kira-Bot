@@ -27,7 +27,7 @@ handler.bypassPrefix = true
 handler.pluginName = 'eval async'
 handler.command = ['!!']
 handler.alias = []
-handler.category = [Category.ADVANCED]
+handler.category = [Category.OWNER]
 handler.help = 'Eval yang sudah di bungkus oleh async function. jadi bisa langsung pakai await. ingat return buat dapetin value nya ya!'
 
 export default handler

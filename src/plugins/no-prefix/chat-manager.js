@@ -83,7 +83,7 @@ handler.bypassPrefix = true
 handler.pluginName = 'chat manager'
 handler.command = ['chat']
 handler.alias = []
-handler.category = [Category.ADVANCED]
+handler.category = [Category.OWNER]
 handler.help = 'gak tau males bikin deskripsi'
 
 export default handler

@@ -51,7 +51,7 @@ handler.bypassPrefix = true
 handler.pluginName = 'prefix'
 handler.command = ['prefix']
 handler.alias = []
-handler.category = [Category.ADVANCED]
+handler.category = [Category.OWNER]
 handler.help = 'Plugin ini buat manage prefix. Kamu bisa hidupkan/matikan prefix. Berlaku untuk global (chat pribadi dan grup). Prefix yang kamu tambahkan bisa digunakan semua. Akan di cocokkan dengan salah satu list prefix. Berikut adalah command yang bisa kamu pakai buat manage prefix.\n\n' +
   'tambah prefix\n> ' + handler.command + ' add <prefix>\n\n' +
   'hapus prefix\n> ' + handler.command + ' del <prefix|index>\n\n' +

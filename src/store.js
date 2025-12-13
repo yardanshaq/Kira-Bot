@@ -5,7 +5,6 @@ import {
 import { bot } from '../index.js'
 import { loadJson, saveJson, log } from './helper.js'
 import { allPath } from './static.js'
-import { KeyedMutex } from './keyed-mutex.js'
 import fs from 'node:fs'
 
 class Store {
@@ -14,7 +13,6 @@ class Store {
     //chats = new Map()
     contacts = new Map()
 
-    antri = new KeyedMutex()
 
     constructor() {
         // load all chats file

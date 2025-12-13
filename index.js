@@ -21,7 +21,6 @@ import Store from "./src/store.js";
 import User, { Permission } from "./src/user-manager.js";
 import PrefixManager from "./src/prefix-manager.js";
 
-import socketPatch from "./src/socket-patch.js";
 import socketEventLog from "./src/socket-event-log.js";
 import patchMessageBeforeSending from "./src/patch-message-before-send.js";
 import serialize from './src/serialize.js'

@@ -28,7 +28,7 @@ handler.bypassPrefix = true
 handler.pluginName = 'eval'
 handler.command = ['!']
 handler.alias = []
-handler.category = [Category.ADVANCED]
+handler.category = [Category.OWNER]
 handler.help = 'Eval biasa kayak browser'
 
 export default handler

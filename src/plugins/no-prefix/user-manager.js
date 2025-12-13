@@ -75,7 +75,7 @@ handler.bypassPrefix = true
 handler.pluginName = 'user manager'
 handler.command = ['user']
 handler.alias = []
-handler.category = [Category.ADVANCED]
+handler.category = [Category.OWNER]
 handler.help = 'gak tau males bikin deskripsi'
 
 export default handler

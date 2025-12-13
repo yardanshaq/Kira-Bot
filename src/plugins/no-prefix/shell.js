@@ -29,7 +29,7 @@ handler.bypassPrefix = true
 handler.pluginName = 'terminal'
 handler.command = ['$']
 handler.alias = []
-handler.category = [Category.ADVANCED]
+handler.category = [Category.OWNER]
 handler.help = 'malas bikin desc :v'
 
 export default handler

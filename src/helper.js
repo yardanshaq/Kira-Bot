@@ -329,7 +329,6 @@ export function formatByte(bytes, decimals = 2) {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 }
 
-
 export function loadJson(path) {
     const jsonString = fs.readFileSync(path)
     console.log(`📤 load json: ${path}`)
@@ -393,18 +392,6 @@ export function log(name, ...params) {
     console.log('[log] ' + name, ...params)
 }
 
-export function pluginHelpSerialize(handler) {
-    const emptyPlaceholder = '(tidak ada)'
-    const header = `*📖 dokumentasi plugin*\n\n`
-    const name = `*plugin name*\n${handler.pluginName}\n\n`
-    const category = `*category*\n${handler.category.join(', ') || emptyPlaceholder}\n\n`
-    const command = `*command*\n${handler.command.join(', ')}\n\n`
-    const alias = `*alias*\n${handler.alias.join(', ') || emptyPlaceholder}\n\n`
-    const needPrefix = `*bypass prefix*\n${handler.bypassPrefix ? 'yes' : 'no'}\n\n`
-    const desc = `*description*\n${handler.help || emptyPlaceholder}\n\n`
-    const dir = `*lokasi plugin*\n${handler.dir}`
-    return header + name + desc + command + alias + category + needPrefix + dir
-}
 
 export function getErrorLine(errorStack) {
     return errorStack.match(/t=\d+:(\d+):/)?.[1]
@@ -447,6 +434,10 @@ export function shuffleArray(array) {
     }
 }
 
+export function pickWords (string){
+    return string.match(/\S+/g)
+}
+
 
 export function consoleMessage(m, q) {
     let pQuoted = ''
@@ -468,13 +459,22 @@ export function consoleMessage(m, q) {
     return pChat + pQuoted + qsymbol + '[M] ' + pName + pType + pSenderId + pText + separator
 }
 
+export function pluginHelpSerialize(handler) {
+    const emptyPlaceholder = '(tidak ada)'
+    const header = `*📖 dokumentasi plugin*\n\n`
+    const name = `*plugin name*\n${handler.pluginName}\n\n`
+    const category = `*category*\n${handler.category.join(', ') || emptyPlaceholder}\n\n`
+    const command = `*command*\n${handler.command.join(', ')}\n\n`
+    const alias = `*alias*\n${handler.alias.join(', ') || emptyPlaceholder}\n\n`
+    const needPrefix = `*bypass prefix*\n${handler.bypassPrefix ? 'yes' : 'no'}\n\n`
+    const desc = `*description*\n${handler.help || emptyPlaceholder}\n\n`
+    const dir = `*lokasi plugin*\n${handler.dir}`
+    return header + name + desc + command + alias + category + needPrefix + dir
+}
+
 export class Category {
-    static HIBURAN = 'hiburan'
     static BOT = 'bot'
     static OTHER = 'other'
-    static TOOL = 'tool'
-    static ADVANCED = 'advanced'
-    static KOSONG = 'kosongan'
     static OWNER = 'owner'
     static DEBUG = 'debug'
 }
