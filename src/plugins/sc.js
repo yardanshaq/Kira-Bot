@@ -26,8 +26,7 @@ async function handler({ sock, jid, q }) {
     )
 }
 
-//handler.bypassPrefix = true
-
+handler.bypassPrefix = false
 handler.pluginName = 'source code'
 handler.command = ['sc']
 handler.alias = []

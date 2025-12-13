@@ -10,12 +10,11 @@ async function handler({ jid }) {
    return
 }
 
-//handler.bypassPrefix = true
-
+handler.bypassPrefix = false
 handler.pluginName = 'ping 2'
 handler.command = ['ping2']
 handler.alias = ['p2']
-handler.category = [C.TOOL, C.BOT]
-handler.help = 'buat test apakah bot respond apa kagak. dan hitung durasi simple sendMessage'
+handler.category = [C.BOT]
+handler.help = 'test kecepatan sendMessage bot.'
 
 export default handler

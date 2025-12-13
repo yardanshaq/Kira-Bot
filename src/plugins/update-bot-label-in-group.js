@@ -8,7 +8,6 @@ import { isJidGroup } from 'baileys'
  * @param {import("baileys").WASocket} params.sock   // ← auto-complete muncul di sini
  */
 
-
 async function handler({ m, text, jid }) {
    // memastikan hanya owner bot saja yang bisa pakai fitur ini
    if(!user.trustedJids.has(m.senderId)) return await sendText(jid, 'only owner', m)
@@ -32,11 +31,11 @@ async function handler({ m, text, jid }) {
    return await sendText(jid, 'sukses! check my new label boss')
 }
 
-//handler.bypassPrefix = true
+handler.bypassPrefix = false
 handler.pluginName = 'working'
 handler.command = ['label']
 handler.alias = []
-handler.category = [Category.BOT]
+handler.category = [Category.OWNER]
 handler.help = 'mengubah label bot pada group. gunakan huruf dan angka saja. maksimal 30 karakter.'
 
 export default handler

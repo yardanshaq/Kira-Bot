@@ -9,6 +9,7 @@ const formatMemory = (mem) => {
    const print = rss + ht + hu + e + ab
    return print
 }
+
 async function handler({ sock, m, text, jid, prefix, command }) {
 
    if (!text) {
@@ -40,7 +41,7 @@ async function handler({ sock, m, text, jid, prefix, command }) {
 handler.pluginName = 'memory'
 handler.command = ['memory']
 handler.alias = ['mem']
-handler.category = [Category.OTHER]
+handler.category = [Category.BOT]
 handler.help = 'liat penggunaan memory node js. defaultnya return memory use by bot process. kalau isi param `-h` maka bakalan return memory use by launcher.js. pakai aja param `-h` buat flexing efisien ram consume ke orang biar mereka bengong haha...'
 
 export default handler

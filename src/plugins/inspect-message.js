@@ -95,7 +95,7 @@ async function handler({ sock, m, text, jid, prefix, command }) {
 handler.pluginName = 'inspect'
 handler.command = ['im']
 handler.alias = []
-handler.category = [Category.OTHER]
+handler.category = [Category.DEBUG]
 handler.help = 'buat inspect message.'
 
 export default handler

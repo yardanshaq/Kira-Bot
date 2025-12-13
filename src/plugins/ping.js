@@ -7,17 +7,15 @@ import { sendText, commandOnly, Category } from './../helper.js'
  */
 
 
-async function handler({ sock, m, text, jid, prefix, command }) {
-   
+async function handler({ m, text, jid}) {
    if (commandOnly(m, text)) return await sendText(jid, 'pong', m)
 }
 
-//handler.bypassPrefix = true
-
+handler.bypassPrefix = false
 handler.pluginName = 'ping'
 handler.command = ['ping']
 handler.alias = ['p']
-handler.category = [Category.TOOL, Category.BOT]
+handler.category = [Category.BOT]
 handler.help = 'buat test apakah bot respond apa kagak.'
 
 export default handler

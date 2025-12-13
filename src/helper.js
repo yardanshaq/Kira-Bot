@@ -395,15 +395,15 @@ export function log(name, ...params) {
 
 export function pluginHelpSerialize(handler) {
     const emptyPlaceholder = '(tidak ada)'
-    const header = `📖 dokumentasi plugin\n\n`
-    const name = `plugin name:\n> ${handler.pluginName}\n\n`
-    const category = `category:\n> ${handler.category.join(', ') || emptyPlaceholder}\n\n`
-    const command = `command:\n> ${handler.command.join(', ')}\n\n`
-    const alias = `alias:\n> ${handler.alias.join(', ') || emptyPlaceholder}\n\n`
-    const needPrefix = `bypass prefix\n> ${handler.bypassPrefix ? 'yes' : 'no'}\n\n`
-    const help = `description:\n> ${handler.help || emptyPlaceholder}\n\n`
-    const dir = `lokasi plugin:\n> ${handler.dir}`
-    return header + name + command + alias + help + category + needPrefix + dir
+    const header = `*📖 dokumentasi plugin*\n\n`
+    const name = `*plugin name*\n${handler.pluginName}\n\n`
+    const category = `*category*\n${handler.category.join(', ') || emptyPlaceholder}\n\n`
+    const command = `*command*\n${handler.command.join(', ')}\n\n`
+    const alias = `*alias*\n${handler.alias.join(', ') || emptyPlaceholder}\n\n`
+    const needPrefix = `*bypass prefix*\n${handler.bypassPrefix ? 'yes' : 'no'}\n\n`
+    const desc = `*description*\n${handler.help || emptyPlaceholder}\n\n`
+    const dir = `*lokasi plugin*\n${handler.dir}`
+    return header + name + desc + command + alias + category + needPrefix + dir
 }
 
 export function getErrorLine(errorStack) {

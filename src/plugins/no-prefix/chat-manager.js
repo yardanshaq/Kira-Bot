@@ -9,7 +9,6 @@ async function handler({sock, m,  text, jid, prefix, command }) {
 
 
     const footer = 'ketik `' + command + ' -h` untuk bantuan.'
-    const param = text.match(/\S+/g)
 
 
     if (!text) {
@@ -28,6 +27,7 @@ async function handler({sock, m,  text, jid, prefix, command }) {
         const print = 'chat mode\n' + gc + tg + '\n' + pc + '\n\n' + footer
         return await sendText(jid, print)
     }
+    const param = text.match(/\S+/g)
     const opt = param[0]
     const toggle = param[1]
 
@@ -80,7 +80,6 @@ async function handler({sock, m,  text, jid, prefix, command }) {
 }
 
 handler.bypassPrefix = true
-
 handler.pluginName = 'chat manager'
 handler.command = ['chat']
 handler.alias = []
