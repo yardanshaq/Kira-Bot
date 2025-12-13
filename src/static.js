@@ -12,9 +12,7 @@ const allPath = {
 
   baileysAuth: "./auth",
 
-  botNumber: "6285137863155"
-
-
+  botNumber: ""
 };
 
 export { allPath };

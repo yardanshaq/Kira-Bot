@@ -10,9 +10,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "awo": "node --inspect --expose-gc index.js",
-    "start": "node  index.js"
+    "test": "node --inspect --expose-gc index.js",
+    "start": "node index.js"
   },
   "keywords": [
     "baileys",
