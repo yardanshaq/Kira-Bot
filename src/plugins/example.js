@@ -1,5 +1,9 @@
-import { } from '../../index.js'
 import { sendText, tag, Category } from '../helper.js'
+
+/**
+ * @param {Object} params
+ * @param {import("baileys").WASocket} params.sock
+ */
 
 async function handler({ sock, jid, text, m, q, prefix, command }) {
 
@@ -14,8 +18,7 @@ async function handler({ sock, jid, text, m, q, prefix, command }) {
     return await sendText(jid, print, m)
 }
 
-//handler.bypassPrefix = true
-
+handler.bypassPrefix = false
 handler.pluginName = 'example title'
 handler.command = ['example']
 handler.alias = ['eg']

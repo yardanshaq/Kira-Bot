@@ -153,19 +153,14 @@ const startSock = async () => {
               "logout by user or uncompleted pairing. auth folder deleted. program stopped (please wait)",
 
             );
-            // process.send({
-            //   cmd: "die",
-            // })
-            //await delay(5000);
+
           }
         } else {
           // or for whatever reason sock connection close.. just restart socket
           sock.end()
           await delay(5000)
           startSock()
-          // process.send({
-          //   cmd: "restart",
-          // })
+
         }
       } else if (connection == "open") {
         console.log("✅ terhubung ke whatsapp");
