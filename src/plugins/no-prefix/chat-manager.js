@@ -37,7 +37,7 @@ async function handler({ sock, jid, text = '', m, q, prefix = '', command }) {
                 user.groupChatToggle(GroupListenMode.DEFAULT)
                 infog = 'chat grup di set ke default (bot listen ke masing" grup setting)'
             } else if (toggle === "everyone") {
-                user.groupChatToggle(GroupListenMode.PUBLIC)
+                user.groupChatToggle(GroupListenMode.EVERYONE)
                 infog = 'bot akan respond siapapun di manapun di grup.'
             } else {
                 infog = 'available param: self, everyone, default.\n\n' + footer
@@ -46,10 +46,10 @@ async function handler({ sock, jid, text = '', m, q, prefix = '', command }) {
         case "private":
             let infop = ''
             if (toggle === 'self') {
-                user.privateChatToggle(PrivateListenMode.DISABLE)
+                user.privateChatToggle(PrivateListenMode.SELF)
                 infop = 'mode self pada private chat. yeyyy (⁠◕⁠ᴗ⁠◕⁠✿⁠)'
             } else if (toggle === 'everyone') {
-                user.privateChatToggle(PrivateListenMode.ENABLE)
+                user.privateChatToggle(PrivateListenMode.EVERYONE)
                 infop = `baik.. aku akan merespond siapapun yang chat pribadi`
             } else {
                 infop = 'available param: self, everyone\n\n' + footer

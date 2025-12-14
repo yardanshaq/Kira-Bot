@@ -162,6 +162,7 @@ export default class User {
 
   saveChatMode() {
     const json = { group: this.groupChatListenMode, private: this.privateChatListenMode }
+    console.log('here', json)
     saveJson(json, allPath.chatListenMode)
   }
 }
@@ -170,13 +171,13 @@ export default class User {
 
 export class GroupListenMode {
   static SELF = 0
-  static PUBLIC = 1
+  static EVERYONE = 1
   static DEFAULT = 2
 }
 
 export class PrivateListenMode {
   static SELF = 0
-  static PUBLIC = 1
+  static EVERYONE = 1
 }
 
 export class Permission {
