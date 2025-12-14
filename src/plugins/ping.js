@@ -1,7 +1,7 @@
 import { sendText, commandOnly, Category } from './../helper.js'
 
 async function handler({ m, text, jid}) {
-   if (commandOnly(m, text)) return await sendText(jid, 'solid', m)
+   if (commandOnly(m, text)) return await sendText(jid, 'pong', m)
 }
 
 handler.pluginName = 'ping'
