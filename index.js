@@ -26,6 +26,7 @@ import patchMessageBeforeSending from "./src/patch-message-before-send.js";
 import serialize from './src/serialize.js'
 
 import { loadPlugins, plugins, pluginsNoPrefix, category, pluginsFilaName,  } from './src/plugin-handler.js'
+import * as ph from './src/plugin-handler.js'
 import { pluginHelpSerialize, consoleMessage } from "./src/helper.js";
 import { allPath } from "./src/static.js";
 import { react, sendText, getErrorLine } from "./src/helper.js";
@@ -68,7 +69,8 @@ const bot = {
   loadPlugins,
   pluginsFilaName,
   plugins,
-  category
+  category,
+  ph
 };
 let gotCode = false;
 

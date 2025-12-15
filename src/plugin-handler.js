@@ -11,10 +11,11 @@ const pluginFail = []
 
 // menu value
 const category = new Map()
+const categorySubMenuText = new Map()
 Object.values(Category).forEach(c => category.set(c, []))
 
-let menuText = ''
-let categoryText = Object.values(Category).map(c => '🔖 ' + c).join("\n")
+let menuTextAll = ''
+let categoryForMenu = Object.values(Category).map(c => ' 🔖 ' + c).join("\n")
 
 async function loadPlugins() {
   // clear dulu variabel nya
@@ -23,10 +24,12 @@ async function loadPlugins() {
   plugins.clear()
   pluginsFilaName.length = 0
   Object.values(Category).forEach(c => category.get(c).length = 0)
+  categorySubMenuText.clear()
 
   await readPlugins(allPath.pluginNoPrefix)
   await readPlugins(allPath.plugins)
-  menuText = [...category.entries()].map(x => '🔖 *' + x[0] + '*' + '\n' + x[1].map(x => '	» ' + x).join('\n')).join('\n\n')
+  menuTextAll = [...category.entries()].map(x => ' 🔖 *' + x[0] + '*' + '\n' + x[1].map(x => '   »  ' + x).join('\n')).join('\n\n')
+  Object.values(Category).forEach(c => categorySubMenuText.set(c, ' 🔖 *' + c + '*' + '\n' + category.get(c).map(x => '   »  ' + x).join('\n')))
   return pluginFail
 }
 
@@ -106,4 +109,4 @@ function renderMenu(prefix) {
 
 }
 
-export { plugins, pluginsNoPrefix, loadPlugins, category, menuText, categoryText, pluginsFilaName }
+export { plugins, pluginsNoPrefix, loadPlugins, pluginsFilaName, category, menuTextAll, categoryForMenu, categorySubMenuText }

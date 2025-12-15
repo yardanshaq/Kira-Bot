@@ -81,8 +81,9 @@ async function handler({ sock, jid, text, m, q, prefix, command }) {
             // lanjut cek filename, kalau ada sama dengan filename plugin yang udh ke install maka kasih error
             await fs.promises.writeFile(allPath.plugins + '/' + filename, content)
             const pluginFail = await loadPlugins()
-            const print = `done!\nfail: ${pluginFail.length}\n${pluginFail.join('\n')}\n\npath itu bisa kamu replace dengan kode plugin yang benar ya.`
-            return await sendText(jid, print, m)
+            const fail = pluginFail.length ? `\nfail: ${pluginFail.length}\n${pluginFail.join('\n')}\n\npath itu bisa kamu replace dengan kode plugin yang benar ya.` : ``
+            const print = `done!`
+            return await sendText(jid, print + fail, m)
 
         } else {
             return await sendText(jid, 'unsupported message type', m)
@@ -96,7 +97,7 @@ async function handler({ sock, jid, text, m, q, prefix, command }) {
         if (!handler) return sendText(jid, `plugin dengan command *${param[1]}* tidak ditemukan`)
         const dir = handler.dir
         const name = handler.pluginName
-        if(handler.preventDelete) return await sendText(jid, `plugin ${name} gak bisa di hapus`)
+        if (handler.preventDelete) return await sendText(jid, `plugin ${name} gak bisa di hapus`)
         await fs.promises.rm(dir)
         return await sendText(jid, `plugin ${name} berhasil di hapus.\ndir ${dir}`)
     }
@@ -104,8 +105,9 @@ async function handler({ sock, jid, text, m, q, prefix, command }) {
     // reload
     else if (param[0] === act[3]) {
         const pluginFail = await loadPlugins()
-        const print = `done!\nfail: ${pluginFail.length}\n${pluginFail.join('\n')}\n\npath itu bisa kamu replace dengan kode plugin yang benar ya.`
-        return await sendText(jid, print, m)
+        const fail = pluginFail.length ? `\nfail: ${pluginFail.length}\n${pluginFail.join('\n')}\n\npath itu bisa kamu replace dengan kode plugin yang benar ya.` : ``
+        const print = `done!`
+        return await sendText(jid, print + fail, m)
     }
 
 }

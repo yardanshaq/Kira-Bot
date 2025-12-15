@@ -1,4 +1,4 @@
-import { menuText, categoryText, category } from '../../plugin-handler.js'
+import { categoryForMenu, category, menuTextAll, categorySubMenuText } from '../../plugin-handler.js'
 import { sendText, tag, textOnlyMessage, sendFancyText, msToReadableTime, pickRandom } from '../../helper.js'
 import { prefixManager } from '../../../index.js'
 
@@ -23,23 +23,25 @@ async function handler({ sock, m, text, q, jid, prefix, command }) {
     if (!text) {
         const p = prefixManager.getInfo().isEnable ? prefixManager.getInfo().prefixList[0] : ''
         const headers = `halo kak ${tag(m.senderId)}\nberikut daftar menu yang tersedia:\n\n`
-        const footer = `gunakan perintah ${p}${command} <categori> untuk membuka sub menu`
+        const footer = `gunakan perintah *${p}${command} ${category.keys().next().value}* untuk membuka sub menu`
         const uptime = msToReadableTime(Math.floor(process.uptime()) * 1000)
-        return await sendFancyText(jid, headers + categoryText + '\n\n' + footer, "angelina bot 🌻", "runtime " + uptime + "", imgUrl, true)
+        return await sendFancyText(jid, headers + categoryForMenu + '\n\n' + footer, "angelina bot 🌻", "runtime " + uptime + "", imgUrl, true)
     } else {
+        if (text.trim() === 'all') {
+            return await sendFancyText(jid, menuTextAll, 'menu all', 'angelina bot 🌻', null, false)
+        }
         const commandList = category.get(text)
+        if (!commandList) return await sendText(jid, `*${text}*invalid category`, m)
         if (!commandList.length) return await sendFancyText(jid, 'aduh menu nya kosong bro..', 'menu ' + text, 'angelina bot 🌻', null, false)
-        if (!commandList) return await sendText(jid, `invalid category`, m)
-        const header = 'command tersedia\n\n'
-        const print = commandList.map(c => ` » ${c}`).join("\n")
-        const footer = '\n\ngunakan perintah *-h* jika kamu ingin tau fungsi command. contoh *' + (commandList[0].split(/ +/g)?.[0].replace(/,$/g, '') || '(empty plugin)') + ' -h*'
-        return await sendFancyText(jid, header + print + footer, 'menu ' + text, 'angelina bot 🌻', null, false)
+        const print = categorySubMenuText.get(text)
+        const footer = '\n\ngunakan perintah *-h* jika kamu ingin tau fungsi command. contoh *' + (commandList[0].split(/ +/g)?.[0].replace(/,$/g, '') + ' -h*' || '(eh plugin nya kosong jir)')
+        return await sendFancyText(jid, print + footer, 'menu ' + text, 'angelina bot 🌻', null, false)
     }
 
 }
 
 handler.preventDelete = true
-handler.bypassPrefix = false
+handler.bypassPrefix = true
 handler.pluginName = 'menu'
 handler.command = ['menu']
 handler.alias = []
