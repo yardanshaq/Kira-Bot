@@ -99,7 +99,8 @@ async function handler({ sock, jid, text, m, q, prefix, command }) {
         const name = handler.pluginName
         if (handler.preventDelete) return await sendText(jid, `plugin ${name} gak bisa di hapus`)
         await fs.promises.rm(dir)
-        return await sendText(jid, `plugin ${name} berhasil di hapus.\ndir ${dir}`)
+        const pluginFail = await loadPlugins()
+        return await sendText(jid, `plugin *${name}* berhasil di hapus.\ndir ${dir}`)
     }
 
     // reload
