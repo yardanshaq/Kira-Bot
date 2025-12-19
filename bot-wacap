@@ -1,0 +1,604 @@
+Decrypted message with closed session.
+Closing open session in favor of incoming prekey bundle
+gagal meload plugin src/plugins/ai-copilot.js
+gagal meload plugin src/plugins/ai-copilot.js
+gagal meload plugin src/plugins/copilot.js
+gagal meload plugin src/plugins/ai-copilot.js
+gagal meload plugin src/plugins/copilot.js
+gagal meload plugin src/plugins/ai-copilot.js
+gagal meload plugin src/plugins/copilot.js
+gagal meload plugin src/plugins/ai-copilot.js
+gagal meload plugin src/plugins/copilot.js
+gagal meload plugin src/plugins/ai-copilot.js
+gagal meload plugin src/plugins/ai-copilot.js
+gagal meload plugin src/plugins/brat.js
+gagal meload plugin src/plugins/ai-copilot.js
+gagal meload plugin src/plugins/brat.js
+gagal meload plugin src/plugins/ai-copilot.js
+gagal meload plugin src/plugins/brat.js
+gagal meload plugin src/plugins/ai-copilot.js
+gagal meload plugin src/plugins/ai-copilot.js
+gagal meload plugin src/plugins/ai-copilot.js
+gagal meload plugin src/plugins/bratvid.js
+gagal meload plugin src/plugins/emoji-gif.js
+gagal meload plugin src/plugins/ssweb.js
+gagal meload plugin src/plugins/sticker.js
+gagal meload plugin src/plugins/sticker.js
+gagal meload plugin src/plugins/sticker.js
+gagal meload plugin src/plugins/sticker.js
+gagal meload plugin src/plugins/sticker.js
+gagal meload plugin src/plugins/sticker.js
+gagal meload plugin src/plugins/sticker.js
+gagal meload plugin src/plugins/sticker.js
+gagal meload plugin src/plugins/sticker.js
+gagal meload plugin src/plugins/sticker.js
+gagal meload plugin src/plugins/sticker.js
+file:///root/angelina-bot/src/helper.js:11
+import { packname, author } from "./static.js";
+                   ^^^^^^
+SyntaxError: The requested module './static.js' does not provide an export named 'author'
+    at #asyncInstantiate (node:internal/modules/esm/module_job:302:21)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async ModuleJob.run (node:internal/modules/esm/module_job:405:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:660:26)
+SyntaxError: Unexpected identifier 'packname'
+    at compileSourceTextModule (node:internal/modules/esm/utils:318:16)
+    at ModuleLoader.moduleStrategy (node:internal/modules/esm/translators:111:18)
+    at #translate (node:internal/modules/esm/loader:473:20)
+    at afterLoad (node:internal/modules/esm/loader:529:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:534:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:571:36)
+    at afterResolve (node:internal/modules/esm/loader:624:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:630:12)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:143:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:228:17)
+SyntaxError: Unexpected identifier 'author'
+    at compileSourceTextModule (node:internal/modules/esm/utils:318:16)
+    at ModuleLoader.moduleStrategy (node:internal/modules/esm/translators:111:18)
+    at #translate (node:internal/modules/esm/loader:473:20)
+    at afterLoad (node:internal/modules/esm/loader:529:29)
+    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:534:12)
+    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:571:36)
+    at afterResolve (node:internal/modules/esm/loader:624:52)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:630:12)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:143:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:228:17)
+file:///root/angelina-bot/src/helper.js:11
+import { packname, author } from "./static.js";
+                   ^^^^^^
+SyntaxError: The requested module './static.js' does not provide an export named 'author'
+    at #asyncInstantiate (node:internal/modules/esm/module_job:302:21)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async ModuleJob.run (node:internal/modules/esm/module_job:405:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:660:26)
+AxiosError: Request failed with status code 429
+    at settle (file:///root/angelina-bot/node_modules/axios/lib/core/settle.js:19:12)
+    at IncomingMessage.handleStreamEnd (file:///root/angelina-bot/node_modules/axios/lib/adapters/http.js:793:11)
+    at IncomingMessage.emit (node:events:520:35)
+    at endReadableNT (node:internal/streams/readable:1701:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+    at Axios.request (file:///root/angelina-bot/node_modules/axios/lib/core/Axios.js:45:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async uploadCloudKu (file:///root/angelina-bot/src/plugins/tourl.js?t=1766115403782:10:15)
+    at async Promise.all (index 0)
+    at async handler (file:///root/angelina-bot/src/plugins/tourl.js?t=1766115403782:71:31)
+    at async file:///root/angelina-bot/index.js:312:21
+    at async EventEmitter.listener (file:///root/angelina-bot/node_modules/baileys/lib/Utils/event-buffer.js:98:17) {
+  code: 'ERR_BAD_REQUEST',
+  config: {
+    transitional: {
+      silentJSONParsing: true,
+      forcedJSONParsing: true,
+      clarifyTimeoutError: false
+    },
+    adapter: [ 'xhr', 'http', 'fetch' ],
+    transformRequest: [ [Function: transformRequest] ],
+    transformResponse: [ [Function: transformResponse] ],
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    maxBodyLength: -1,
+    env: { FormData: [Function], Blob: [class Blob] },
+    validateStatus: [Function: validateStatus],
+    headers: Object [AxiosHeaders] {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'multipart/form-data; boundary=--------------------------e0b3447310a300f6f22b2246',
+      'User-Agent': 'axios/1.13.2',
+      'Content-Length': '156449',
+      'Accept-Encoding': 'gzip, compress, deflate, br'
+    },
+    method: 'post',
+    url: 'https://cloudkuimages.guru/upload.php',
+    data: FormData {
+      _overheadLength: 151,
+      _valueLength: 156242,
+      _valuesToMeasure: [],
+      writable: false,
+      readable: true,
+      dataSize: 0,
+      maxDataSize: 2097152,
+      pauseStreams: true,
+      _released: true,
+      _streams: [],
+      _currentStream: null,
+      _insideLoop: false,
+      _pendingNext: false,
+      _boundary: '--------------------------e0b3447310a300f6f22b2246',
+      _events: [Object: null prototype],
+      _eventsCount: 3
+    },
+    allowAbsoluteUrls: true
+  },
+  request: <ref *1> ClientRequest {
+    _events: [Object: null prototype] {
+      abort: [Function (anonymous)],
+      aborted: [Function (anonymous)],
+      connect: [Function (anonymous)],
+      error: [Function (anonymous)],
+      socket: [Function (anonymous)],
+      timeout: [Function (anonymous)],
+      finish: [Function: requestOnFinish]
+    },
+    _eventsCount: 7,
+    _maxListeners: undefined,
+    outputData: [],
+    outputSize: 0,
+    writable: true,
+    destroyed: true,
+    _last: false,
+    chunkedEncoding: false,
+    shouldKeepAlive: true,
+    maxRequestsOnConnectionReached: false,
+    _defaultKeepAlive: true,
+    useChunkedEncodingByDefault: true,
+    sendDate: false,
+    _removedConnection: false,
+    _removedContLen: false,
+    _removedTE: false,
+    strictContentLength: false,
+    _contentLength: 156449,
+    _hasBody: true,
+    _trailer: '',
+    finished: true,
+    _headerSent: true,
+    _closed: true,
+    _header: 'POST /upload.php HTTP/1.1\r\n' +
+      'Accept: application/json, text/plain, */*\r\n' +
+      'Content-Type: multipart/form-data; boundary=--------------------------e0b3447310a300f6f22b2246\r\n' +
+      'User-Agent: axios/1.13.2\r\n' +
+      'Content-Length: 156449\r\n' +
+      'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+      'Host: cloudkuimages.guru\r\n' +
+      'Connection: keep-alive\r\n' +
+      '\r\n',
+    _keepAliveTimeout: 0,
+    _onPendingData: [Function: nop],
+    agent: Agent {
+      _events: [Object: null prototype],
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      options: [Object: null prototype],
+      defaultPort: 443,
+      protocol: 'https:',
+      requests: [Object: null prototype] {},
+      sockets: [Object: null prototype],
+      freeSockets: [Object: null prototype],
+      keepAliveMsecs: 1000,
+      keepAlive: true,
+      maxSockets: Infinity,
+      maxFreeSockets: 256,
+      scheduling: 'lifo',
+      maxTotalSockets: Infinity,
+      totalSocketCount: 2,
+      agentKeepAliveTimeoutBuffer: 1000,
+      maxCachedSessions: 100,
+      _sessionCache: [Object],
+      Symbol(shapeMode): false,
+      Symbol(kCapture): false
+    },
+    socketPath: undefined,
+    method: 'POST',
+    maxHeaderSize: undefined,
+    insecureHTTPParser: undefined,
+    joinDuplicateHeaders: undefined,
+    path: '/upload.php',
+    _ended: true,
+    res: IncomingMessage {
+      _events: [Object],
+      _readableState: [ReadableState],
+      _maxListeners: undefined,
+      socket: null,
+      httpVersionMajor: 1,
+      httpVersionMinor: 1,
+      httpVersion: '1.1',
+      complete: true,
+      rawHeaders: [Array],
+      rawTrailers: [],
+      joinDuplicateHeaders: undefined,
+      aborted: false,
+      upgrade: false,
+      url: '',
+      method: null,
+      statusCode: 429,
+      statusMessage: 'Too Many Requests',
+      client: [TLSSocket],
+      _consuming: false,
+      _dumped: false,
+      req: [Circular *1],
+      _eventsCount: 4,
+      responseUrl: 'https://cloudkuimages.guru/upload.php',
+      redirects: [],
+      Symbol(shapeMode): true,
+      Symbol(kCapture): false,
+      Symbol(kHeaders): [Object],
+      Symbol(kHeadersCount): 18,
+      Symbol(kTrailers): null,
+      Symbol(kTrailersCount): 0
+    },
+    aborted: false,
+    timeoutCb: null,
+    upgradeOrConnect: false,
+    parser: null,
+    maxHeadersCount: null,
+    reusedSocket: false,
+    host: 'cloudkuimages.guru',
+    protocol: 'https:',
+    _redirectable: Writable {
+      _events: [Object],
+      _writableState: [WritableState],
+      _maxListeners: undefined,
+      _options: [Object],
+      _ended: true,
+      _ending: true,
+      _redirectCount: 0,
+      _redirects: [],
+      _requestBodyLength: 156449,
+      _requestBodyBuffers: [],
+      _eventsCount: 3,
+      _onNativeResponse: [Function (anonymous)],
+      _currentRequest: [Circular *1],
+      _currentUrl: 'https://cloudkuimages.guru/upload.php',
+      _timeout: null,
+      Symbol(shapeMode): true,
+      Symbol(kCapture): false
+    },
+    Symbol(shapeMode): false,
+    Symbol(kCapture): false,
+    Symbol(kBytesWritten): 0,
+    Symbol(kNeedDrain): true,
+    Symbol(corked): 0,
+    Symbol(kChunkedBuffer): [],
+    Symbol(kChunkedLength): 0,
+    Symbol(kSocket): TLSSocket {
+      _tlsOptions: [Object],
+      _secureEstablished: true,
+      _securePending: false,
+      _newSessionPending: false,
+      _controlReleased: true,
+      secureConnecting: false,
+      _SNICallback: null,
+      servername: 'cloudkuimages.guru',
+      alpnProtocol: false,
+      authorized: true,
+      authorizationError: null,
+      encrypted: true,
+      _events: [Object: null prototype],
+      _eventsCount: 9,
+      connecting: false,
+      _hadError: false,
+      _parent: null,
+      _host: 'cloudkuimages.guru',
+      _closeAfterHandlingError: false,
+      _readableState: [ReadableState],
+      _writableState: [WritableState],
+      allowHalfOpen: false,
+      _maxListeners: undefined,
+      _sockname: null,
+      _pendingData: null,
+      _pendingEncoding: '',
+      server: undefined,
+      _server: null,
+      ssl: [TLSWrap],
+      _requestCert: true,
+      _rejectUnauthorized: true,
+      timeout: 5000,
+      parser: null,
+      _httpMessage: null,
+      autoSelectFamilyAttemptedAddresses: [Array],
+      Symbol(alpncallback): null,
+      Symbol(res): [TLSWrap],
+      Symbol(verified): true,
+      Symbol(pendingSession): null,
+      Symbol(async_id_symbol): -1,
+      Symbol(kHandle): [TLSWrap],
+      Symbol(lastWriteQueueSize): 0,
+      Symbol(timeout): Timeout {
+        _idleTimeout: 5000,
+        _idlePrev: [TimersList],
+        _idleNext: [Timeout],
+        _idleStart: 4290831,
+        _onTimeout: [Function: bound ],
+        _timerArgs: undefined,
+        _repeat: null,
+        _destroyed: false,
+        Symbol(refed): false,
+        Symbol(kHasPrimitive): false,
+        Symbol(asyncId): 20566,
+        Symbol(triggerId): 20564,
+        Symbol(kAsyncContextFrame): undefined
+      },
+      Symbol(kBuffer): null,
+      Symbol(kBufferCb): null,
+      Symbol(kBufferGen): null,
+      Symbol(shapeMode): true,
+      Symbol(kCapture): false,
+      Symbol(kSetNoDelay): false,
+      Symbol(kSetKeepAlive): true,
+      Symbol(kSetKeepAliveInitialDelay): 1,
+      Symbol(kBytesRead): 0,
+      Symbol(kBytesWritten): 0,
+      Symbol(connect-options): [Object]
+    },
+    Symbol(kOutHeaders): [Object: null prototype] {
+      accept: [Array],
+      'content-type': [Array],
+      'user-agent': [Array],
+      'content-length': [Array],
+      'accept-encoding': [Array],
+      host: [Array]
+    },
+    Symbol(errored): null,
+    Symbol(kHighWaterMark): 65536,
+    Symbol(kRejectNonStandardBodyWrites): false,
+    Symbol(kUniqueHeaders): null
+  },
+  response: {
+    status: 429,
+    statusText: 'Too Many Requests',
+    headers: Object [AxiosHeaders] {
+      date: 'Fri, 19 Dec 2025 04:19:20 GMT',
+      server: 'Apache',
+      'x-content-type-options': 'nosniff',
+      'x-frame-options': 'DENY',
+      'x-xss-protection': '1; mode=block',
+      'referrer-policy': 'strict-origin-when-cross-origin',
+      'content-length': '267',
+      'content-type': 'text/html; charset=iso-8859-1',
+      'x-via': 'LHR5'
+    },
+    config: {
+      transitional: [Object],
+      adapter: [Array],
+      transformRequest: [Array],
+      transformResponse: [Array],
+      timeout: 0,
+      xsrfCookieName: 'XSRF-TOKEN',
+      xsrfHeaderName: 'X-XSRF-TOKEN',
+      maxContentLength: -1,
+      maxBodyLength: -1,
+      env: [Object],
+      validateStatus: [Function: validateStatus],
+      headers: [Object [AxiosHeaders]],
+      method: 'post',
+      url: 'https://cloudkuimages.guru/upload.php',
+      data: [FormData],
+      allowAbsoluteUrls: true
+    },
+    request: <ref *1> ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 7,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      destroyed: true,
+      _last: false,
+      chunkedEncoding: false,
+      shouldKeepAlive: true,
+      maxRequestsOnConnectionReached: false,
+      _defaultKeepAlive: true,
+      useChunkedEncodingByDefault: true,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      strictContentLength: false,
+      _contentLength: 156449,
+      _hasBody: true,
+      _trailer: '',
+      finished: true,
+      _headerSent: true,
+      _closed: true,
+      _header: 'POST /upload.php HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Content-Type: multipart/form-data; boundary=--------------------------e0b3447310a300f6f22b2246\r\n' +
+        'User-Agent: axios/1.13.2\r\n' +
+        'Content-Length: 156449\r\n' +
+        'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+        'Host: cloudkuimages.guru\r\n' +
+        'Connection: keep-alive\r\n' +
+        '\r\n',
+      _keepAliveTimeout: 0,
+      _onPendingData: [Function: nop],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'POST',
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      joinDuplicateHeaders: undefined,
+      path: '/upload.php',
+      _ended: true,
+      res: [IncomingMessage],
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      reusedSocket: false,
+      host: 'cloudkuimages.guru',
+      protocol: 'https:',
+      _redirectable: [Writable],
+      Symbol(shapeMode): false,
+      Symbol(kCapture): false,
+      Symbol(kBytesWritten): 0,
+      Symbol(kNeedDrain): true,
+      Symbol(corked): 0,
+      Symbol(kChunkedBuffer): [],
+      Symbol(kChunkedLength): 0,
+      Symbol(kSocket): [TLSSocket],
+      Symbol(kOutHeaders): [Object: null prototype],
+      Symbol(errored): null,
+      Symbol(kHighWaterMark): 65536,
+      Symbol(kRejectNonStandardBodyWrites): false,
+      Symbol(kUniqueHeaders): null
+    },
+    data: '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">\n' +
+      '<html><head>\n' +
+      '<title>429 Too Many Requests</title>\n' +
+      '</head><body>\n' +
+      '<h1>Too Many Requests</h1>\n' +
+      '<p>The user has sent too many requests\n' +
+      'in a given amount of time.</p>\n' +
+      '</body></html>\n'
+  },
+  status: 429
+}
+TypeError [ERR_INVALID_ARG_TYPE]: The "string" argument must be of type string or an instance of Buffer or ArrayBuffer. Received type boolean (true)
+    at Buffer.byteLength (node:buffer:791:11)
+    at BufferWriter.write_string_buffer [as string] (/root/angelina-bot/node_modules/protobufjs/src/writer_buffer.js:70:27)
+    at ExternalAdReplyInfo.encode (file:///root/angelina-bot/node_modules/baileys/WAProto/index.js:22734:34)
+    at ContextInfo.encode (file:///root/angelina-bot/node_modules/baileys/WAProto/index.js:20889:61)
+    at ExtendedTextMessage.encode (file:///root/angelina-bot/node_modules/baileys/WAProto/index.js:43757:45)
+    at Message.encode (file:///root/angelina-bot/node_modules/baileys/WAProto/index.js:36114:57)
+    at encodeWAMessage (file:///root/angelina-bot/node_modules/baileys/lib/Utils/generics.js:56:79)
+    at file:///root/angelina-bot/node_modules/baileys/lib/Socket/messages-send.js:515:31
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async file:///root/angelina-bot/node_modules/baileys/lib/Utils/auth-utils.js:248:40
+Error: Failed to fetch stream from https://files.catbox.moe/jeyyw1.jpeg'
+    at getHttpStream (file:///root/angelina-bot/node_modules/baileys/lib/Utils/messages-media.js:304:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async getStream (file:///root/angelina-bot/node_modules/baileys/lib/Utils/messages-media.js:262:26)
+    at async encryptedStream (file:///root/angelina-bot/node_modules/baileys/lib/Utils/messages-media.js:310:30)
+    at async prepareWAMessageMedia (file:///root/angelina-bot/node_modules/baileys/lib/Utils/messages.js:138:96)
+    at async generateWAMessageContent (file:///root/angelina-bot/node_modules/baileys/lib/Utils/messages.js:472:13)
+    at async generateWAMessage (file:///root/angelina-bot/node_modules/baileys/lib/Utils/messages.js:582:46)
+    at async Object.sendMessage (file:///root/angelina-bot/node_modules/baileys/lib/Socket/messages-send.js:897:33)
+    at async handler (file:///root/angelina-bot/src/plugins/lyrics.js?t=1766134518685:38:9)
+    at async file:///root/angelina-bot/index.js:312:21 {
+  data: { url: "https://files.catbox.moe/jeyyw1.jpeg'" },
+  isBoom: true,
+  isServer: false,
+  output: {
+    statusCode: 404,
+    payload: {
+      statusCode: 404,
+      error: 'Not Found',
+      message: "Failed to fetch stream from https://files.catbox.moe/jeyyw1.jpeg'"
+    },
+    headers: {}
+  }
+}
+Error: Failed to fetch stream from https://files.catbox.moe/jeyyw1.jpeg'
+    at getHttpStream (file:///root/angelina-bot/node_modules/baileys/lib/Utils/messages-media.js:304:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async getStream (file:///root/angelina-bot/node_modules/baileys/lib/Utils/messages-media.js:262:26)
+    at async encryptedStream (file:///root/angelina-bot/node_modules/baileys/lib/Utils/messages-media.js:310:30)
+    at async prepareWAMessageMedia (file:///root/angelina-bot/node_modules/baileys/lib/Utils/messages.js:138:96)
+    at async generateWAMessageContent (file:///root/angelina-bot/node_modules/baileys/lib/Utils/messages.js:472:13)
+    at async generateWAMessage (file:///root/angelina-bot/node_modules/baileys/lib/Utils/messages.js:582:46)
+    at async Object.sendMessage (file:///root/angelina-bot/node_modules/baileys/lib/Socket/messages-send.js:897:33)
+    at async handler (file:///root/angelina-bot/src/plugins/lyrics.js?t=1766134518685:38:9)
+    at async file:///root/angelina-bot/index.js:312:21 {
+  data: { url: "https://files.catbox.moe/jeyyw1.jpeg'" },
+  isBoom: true,
+  isServer: false,
+  output: {
+    statusCode: 404,
+    payload: {
+      statusCode: 404,
+      error: 'Not Found',
+      message: "Failed to fetch stream from https://files.catbox.moe/jeyyw1.jpeg'"
+    },
+    headers: {}
+  }
+}
+Error: Failed to fetch stream from https://files.catbox.moe/jeyyw1.jpeg'
+    at getHttpStream (file:///root/angelina-bot/node_modules/baileys/lib/Utils/messages-media.js:304:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async getStream (file:///root/angelina-bot/node_modules/baileys/lib/Utils/messages-media.js:262:26)
+    at async encryptedStream (file:///root/angelina-bot/node_modules/baileys/lib/Utils/messages-media.js:310:30)
+    at async prepareWAMessageMedia (file:///root/angelina-bot/node_modules/baileys/lib/Utils/messages.js:138:96)
+    at async generateWAMessageContent (file:///root/angelina-bot/node_modules/baileys/lib/Utils/messages.js:472:13)
+    at async generateWAMessage (file:///root/angelina-bot/node_modules/baileys/lib/Utils/messages.js:582:46)
+    at async Object.sendMessage (file:///root/angelina-bot/node_modules/baileys/lib/Socket/messages-send.js:897:33)
+    at async handler (file:///root/angelina-bot/src/plugins/lyrics.js?t=1766134518685:38:9)
+    at async file:///root/angelina-bot/index.js:312:21 {
+  data: { url: "https://files.catbox.moe/jeyyw1.jpeg'" },
+  isBoom: true,
+  isServer: false,
+  output: {
+    statusCode: 404,
+    payload: {
+      statusCode: 404,
+      error: 'Not Found',
+      message: "Failed to fetch stream from https://files.catbox.moe/jeyyw1.jpeg'"
+    },
+    headers: {}
+  }
+}
+Error: Failed to fetch stream from https://files.catbox.moe/jeyyw1.jpeg'
+    at getHttpStream (file:///root/angelina-bot/node_modules/baileys/lib/Utils/messages-media.js:304:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async getStream (file:///root/angelina-bot/node_modules/baileys/lib/Utils/messages-media.js:262:26)
+    at async encryptedStream (file:///root/angelina-bot/node_modules/baileys/lib/Utils/messages-media.js:310:30)
+    at async prepareWAMessageMedia (file:///root/angelina-bot/node_modules/baileys/lib/Utils/messages.js:138:96)
+    at async generateWAMessageContent (file:///root/angelina-bot/node_modules/baileys/lib/Utils/messages.js:472:13)
+    at async generateWAMessage (file:///root/angelina-bot/node_modules/baileys/lib/Utils/messages.js:582:46)
+    at async Object.sendMessage (file:///root/angelina-bot/node_modules/baileys/lib/Socket/messages-send.js:897:33)
+    at async handler (file:///root/angelina-bot/src/plugins/lyrics.js?t=1766134518685:38:9)
+    at async file:///root/angelina-bot/index.js:312:21 {
+  data: { url: "https://files.catbox.moe/jeyyw1.jpeg'" },
+  isBoom: true,
+  isServer: false,
+  output: {
+    statusCode: 404,
+    payload: {
+      statusCode: 404,
+      error: 'Not Found',
+      message: "Failed to fetch stream from https://files.catbox.moe/jeyyw1.jpeg'"
+    },
+    headers: {}
+  }
+}
+Error: Failed to fetch stream from https://files.catbox.moe/jeyyw1.jpeg'
+    at getHttpStream (file:///root/angelina-bot/node_modules/baileys/lib/Utils/messages-media.js:304:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async getStream (file:///root/angelina-bot/node_modules/baileys/lib/Utils/messages-media.js:262:26)
+    at async encryptedStream (file:///root/angelina-bot/node_modules/baileys/lib/Utils/messages-media.js:310:30)
+    at async prepareWAMessageMedia (file:///root/angelina-bot/node_modules/baileys/lib/Utils/messages.js:138:96)
+    at async generateWAMessageContent (file:///root/angelina-bot/node_modules/baileys/lib/Utils/messages.js:472:13)
+    at async generateWAMessage (file:///root/angelina-bot/node_modules/baileys/lib/Utils/messages.js:582:46)
+    at async Object.sendMessage (file:///root/angelina-bot/node_modules/baileys/lib/Socket/messages-send.js:897:33)
+    at async handler (file:///root/angelina-bot/src/plugins/lyrics.js?t=1766134590609:38:9)
+    at async file:///root/angelina-bot/index.js:312:21 {
+  data: { url: "https://files.catbox.moe/jeyyw1.jpeg'" },
+  isBoom: true,
+  isServer: false,
+  output: {
+    statusCode: 404,
+    payload: {
+      statusCode: 404,
+      error: 'Not Found',
+      message: "Failed to fetch stream from https://files.catbox.moe/jeyyw1.jpeg'"
+    },
+    headers: {}
+  }
+}
+Closing open session in favor of incoming prekey bundle
+Closing open session in favor of incoming prekey bundle
+Closing open session in favor of incoming prekey bundle
+Closing open session in favor of incoming prekey bundle
+Closing open session in favor of incoming prekey bundle
+gagal meload plugin src/plugins/upload.js
+gagal meload plugin src/plugins/upload.js

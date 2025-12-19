@@ -1,14 +1,20 @@
 import { sock } from '../index.js'
 import { jidNormalizedUser, isLidUser, downloadMediaMessage, isJidGroup, isPnUser as isJidUser } from 'baileys'
-import { store } from '../index.js'
-import fs from 'node:fs'
-import { Readable } from 'node:stream'
-
+import { store } from "../index.js";
+import fs from "node:fs";
+import { Readable } from "node:stream";
+import path from "path";
+import { tmpdir } from "os";
+import ffmpeg from "fluent-ffmpeg";
+import crypto from "crypto";
+import { spawn } from "child_process";
+import { packname, author } from "./static.js";
 const value = {
-    thumbnailUrl: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj8Jf0AJ4g-4_jHICkPf_9EpaUHjZowQnx-WNJBPgJbuAJoZf0S8prMdhsF4EiB5PeVZ52o2y7oiTMN7NVuAkkMQzVMXKBzGt1-5eGb2oWyW4sKrVHZBrzVMd-CMdHszvH9QRCDhoeQe5qqD2AJVMQUEmISh2VjAphGLpXvoaEsOmjZT7hv7zlwIgoLTXc/s16000/angelina_thumbnail_480p.webp"
-    //thumbnailUrl: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiNGOW7eVZd_95rRaBApj1OXMx7wcRAm0pYTsMd-4ykLhswYmI0issfSjn3Ncb2FveVdrLCXsZ2PnUfrqpS9GKEce01fjHxaelANtJ9U_FpLzUwBOBJz0eXLTmgPy-tMDi6uwD9I4ylUNDWjwV2HACLen9fuh-jDdDcPTjDJiWJwnM0FYZ2zSHZFbfnJuA/s1280/thumbnail.jpg"
+    thumbnailUrl: "https://files.catbox.moe/ycq47n.jpeg"
+    //thumbnailUrl: "https://raw.githubusercontent.com/kai2-mavelic/UploaderFile/main/files/1765716161045.jpg"
 }
 // whatsapp send
+
 export async function react(m, text) {
     if (!m?.key) throw Error('param 1 invalid. type nya message.')
     vSingleEmoji(text)
@@ -164,6 +170,135 @@ export async function sendVideo(jid, urlOrBuffer, caption, replyTo) {
         video: content,
         caption
     }, { quoted: replyTo })
+}
+
+export async function writeExifWebp(webp, packname = "", author = "") {
+  const img = path.join(tmpdir(), crypto.randomUUID() + ".webp")
+  const out = path.join(tmpdir(), crypto.randomUUID() + ".webp")
+  const exif = path.join(tmpdir(), crypto.randomUUID() + ".exif")
+
+  fs.writeFileSync(img, webp)
+
+  const json = {
+    "sticker-pack-id": "com.zaboy.sticker",
+    "sticker-pack-name": packname,
+    "sticker-pack-publisher": author,
+    "emojis": ["😀"]
+  }
+
+  const jsonBuffer = Buffer.from(JSON.stringify(json), "utf-8")
+
+  const exifBuffer = Buffer.concat([
+    Buffer.from([
+      0x49, 0x49, 0x2A, 0x00,
+      0x08, 0x00, 0x00, 0x00,
+      0x01, 0x00,
+
+      0x41, 0x57,
+      0x07, 0x00,
+      jsonBuffer.length, 0x00, 0x00, 0x00,
+      0x1A, 0x00, 0x00, 0x00,
+
+      0x00, 0x00, 0x00, 0x00
+    ]),
+    jsonBuffer
+  ])
+
+  fs.writeFileSync(exif, exifBuffer)
+
+  await new Promise((resolve, reject) => {
+    spawn("webpmux", ["-set", "exif", exif, img, "-o", out])
+      .on("close", code => code === 0 ? resolve() : reject("webpmux failed"))
+      .on("error", reject)
+  })
+
+  const result = fs.readFileSync(out)
+  fs.unlinkSync(img)
+  fs.unlinkSync(out)
+  fs.unlinkSync(exif)
+
+  return result
+}
+
+export async function sendVideoSticker(jid, options = {}, replyTo) {
+  const media = await new Promise((resolve, reject) => {
+    const input = path.join(tmpdir(), Date.now() + ".mp4");
+    const output = path.join(tmpdir(), Date.now() + ".webp");
+
+    fs.writeFileSync(input, options.buffer);
+
+    ffmpeg(input)
+      .outputOptions([
+        "-vcodec", "libwebp",
+        "-vf", "scale=512:512:force_original_aspect_ratio=decrease,fps=15",
+        "-loop", "0",
+        "-ss", "0",
+        "-t", "6",
+        "-preset", "default",
+        "-an"
+      ])
+      .save(output)
+      .on("end", async () => {
+        try {
+          let webp = fs.readFileSync(output);
+
+          webp = await writeExifWebp(
+            webp,
+            options.packname || "",
+            options.author || ""
+          );
+
+          fs.unlinkSync(input);
+          fs.unlinkSync(output);
+
+          resolve(webp);
+        } catch (e) {
+          reject(e);
+        }
+      })
+      .on("error", reject);
+  });
+  return sock.sendMessage(jid, { sticker: media, mimetype: "image/webp" }, { quoted: replyTo})
+}
+
+export async function sendImageSticker(jid, options = {}, replyTo) {
+  const media = await new Promise((resolve, reject) => {
+    const input = path.join(tmpdir(), Date.now() + ".jpg");
+    const output = path.join(tmpdir(), Date.now() + ".webp");
+
+    fs.writeFileSync(input, options.buffer);
+
+    ffmpeg(input)
+      .outputOptions([
+        "-vcodec", "libwebp",
+        "-vf", "scale=512:512:force_original_aspect_ratio=decrease,fps=15",
+        "-lossless", "1",
+        "-compression_level", "6",
+        "-qscale", "80",
+        "-loop", "0"
+      ])
+      .save(output)
+      .on("end", async () => {
+        try {
+          let webp = fs.readFileSync(output);
+
+          webp = await writeExifWebp(
+            webp,
+            options.packname || "",
+            options.author || ""
+          );
+
+          fs.unlinkSync(input);
+          fs.unlinkSync(output);
+
+          resolve(webp);
+        } catch (e) {
+          reject(e);
+        }
+      })
+      .on("error", reject);
+  });
+  return sock.sendMessage(jid, { sticker: media, mimetype: "image/webp"}, { quoted: replyTo})
 }
 
 export async function sendDocument(jid, urlOrBuffer, fileName, mimetype = 'bin', caption, replyTo) {
@@ -375,6 +510,9 @@ export function msToReadableTime(ms) {
     if (!result) result = '< 1 detik'
     return result.trim()
 }
+export function getRuntime() {
+    return msToReadableTime(Math.floor(process.uptime()) * 1000)
+}
 
 export function vSingleEmoji(inputString) {
     if (!/^(?:\p{RGI_Emoji}|\s*)$/v.test(inputString)) {
@@ -439,6 +577,64 @@ export function pickWords (string){
 }
 
 
+// cek admin user
+export function isAdmin(jid, senderJid) {
+    if (!jid?.endsWith('@g.us')) return false
+
+    const metadata = store.getGroupMetadata(jid)
+    if (!metadata?.participants) return false
+
+    const sender = jidNormalizedUser(senderJid)
+
+    return metadata.participants.some(p =>
+        (p.id === sender || p.phoneNumber === sender) &&
+        (p.admin === 'admin' || p.admin === 'superadmin')
+    )
+}
+
+// cek admin bot
+export function isBotAdmin(jid, sock) {
+    if (!jid?.endsWith('@g.us')) return false
+
+    const metadata = store.getGroupMetadata(jid)
+    if (!metadata?.participants) return false
+
+    const botJid = jidNormalizedUser(sock.user.id)
+
+    return metadata.participants.some(p =>
+        (p.id === botJid || p.phoneNumber === botJid) &&
+        (p.admin === 'admin' || p.admin === 'superadmin')
+    )
+}
+
+export function imageToWebp(buffer) {
+  return new Promise((resolve, reject) => {
+    const input = path.join(tmpdir(), Date.now() + ".jpg");
+    const output = path.join(tmpdir(), Date.now() + ".webp");
+
+    fs.writeFileSync(input, buffer);
+
+    ffmpeg(input)
+      .outputOptions([
+        "-vcodec", "libwebp",
+        "-vf", "scale=512:512:force_original_aspect_ratio=increase,fps=15",
+        "-lossless", "1",
+        "-compression_level", "6",
+        "-qscale", "80",
+        "-loop", "0",
+        "-metadata", `author=${author}`,
+        "-metadata", `title=${packname}`
+      ])
+      .save(output)
+      .on("end", () => {
+        const webp = fs.readFileSync(output);
+        fs.unlinkSync(input);
+        fs.unlinkSync(output);
+        resolve(webp);
+      })
+      .on("error", reject);
+  });
+}
 export function consoleMessage(m, q) {
     let pQuoted = ''
     let qsymbol = ''
@@ -477,4 +673,11 @@ export class Category {
     static OTHER = 'other'
     static OWNER = 'owner'
     static DEBUG = 'debug'
+    static GROUP = 'group'
+    static AI = 'ai'
+    static DOWNLOADER = 'downloader'
+    static SEARCH = 'search'
+    static GENERATOR = 'generator'
+    static RANDOM = 'random'
+    static TOOL = 'tool'
 }

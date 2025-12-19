@@ -16,7 +16,7 @@ const getUptime = function () {
 
 async function handler({ sock, m, text, q, jid, prefix, command }) {
 
-    const imgUrl = 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj8Jf0AJ4g-4_jHICkPf_9EpaUHjZowQnx-WNJBPgJbuAJoZf0S8prMdhsF4EiB5PeVZ52o2y7oiTMN7NVuAkkMQzVMXKBzGt1-5eGb2oWyW4sKrVHZBrzVMd-CMdHszvH9QRCDhoeQe5qqD2AJVMQUEmISh2VjAphGLpXvoaEsOmjZT7hv7zlwIgoLTXc/s16000/angelina_thumbnail_480p.webp'
+    const imgUrl = 'https://files.catbox.moe/jeyyw1.jpeg'
     if (!textOnlyMessage(m)) return
     if (q) return
 
@@ -25,17 +25,17 @@ async function handler({ sock, m, text, q, jid, prefix, command }) {
         const headers = `halo kak ${tag(m.senderId)}\nberikut daftar menu yang tersedia:\n\n`
         const footer = `gunakan perintah *${p}${command} ${category.keys().next().value}* untuk membuka sub menu`
         const uptime = msToReadableTime(Math.floor(process.uptime()) * 1000)
-        return await sendFancyText(jid, headers + categoryForMenu + '\n\n' + footer, "angelina bot 🌻", "runtime " + uptime + "", imgUrl, true)
+        return await sendFancyText(jid, headers + categoryForMenu + '\n\n' + footer, "Kira", "runtime " + uptime + "", imgUrl, true)
     } else {
         if (text.trim() === 'all') {
-            return await sendFancyText(jid, menuTextAll, 'menu all', 'angelina bot 🌻', null, false)
+            return await sendFancyText(jid, menuTextAll, 'menu all', 'Kira', null, false)
         }
         const commandList = category.get(text)
         if (!commandList) return await sendText(jid, `*${text}*invalid category`, m)
-        if (!commandList.length) return await sendFancyText(jid, 'aduh menu nya kosong bro..', 'menu ' + text, 'angelina bot 🌻', null, false)
+        if (!commandList.length) return await sendFancyText(jid, 'aduh menu nya kosong bro..', 'menu ' + text, 'Kira', null, false)
         const print = categorySubMenuText.get(text)
         const footer = '\n\ngunakan perintah *-h* jika kamu ingin tau fungsi command. contoh *' + (commandList[0].split(/ +/g)?.[0].replace(/,$/g, '') + ' -h*' || '(eh plugin nya kosong jir)')
-        return await sendFancyText(jid, print + footer, 'menu ' + text, 'angelina bot 🌻', null, false)
+        return await sendFancyText(jid, print + footer, 'menu ' + text, 'Kira', null, false)
     }
 
 }

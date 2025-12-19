@@ -1,3 +1,6 @@
+export const packname = "kira";
+export const author = "shaq";
+
 const allPath = {
   pluginNoPrefix: "./src/plugins/no-prefix",
   plugins: "./src/plugins",
@@ -12,8 +15,7 @@ const allPath = {
 
   baileysAuth: "./auth",
 
-  botNumber: ""
-
+  botNumber: "62895325875236"
 };
 
 export { allPath };
