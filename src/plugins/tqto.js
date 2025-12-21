@@ -2,17 +2,11 @@ import { sendFancyText, Category } from './../helper.js'
 
 async function handler({ jid }) {
   const text = `
-╭───〔 *KARUDO* 〕───
+╭───〔 *KIRA* 〕───
 │
 │  *Wolep*
-│ └ idol kado & base bot & kink wolep
-│
-│  *Zarr*
-│ └ prennn kado yang bantu fitur
-│
-│  *Lupi*
-│ └ gatau 🤍
-│
+│ └ kink
+│ 
 │  *Kado*
 │ └ penyedia plugin
 │
@@ -25,7 +19,7 @@ async function handler({ jid }) {
   await sendFancyText(
     jid,
     text.trim(),
-    'Terima Kasih 💐',
+    'Thank U',
     'Credits',
     'https://files.catbox.moe/jeyyw1.jpeg',
     true,

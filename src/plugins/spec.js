@@ -1,43 +1,95 @@
-import { sendText, tag, Category, sendFancyText, msToReadableTime } from '../helper.js'
+import { sendFancyText, Category, msToReadableTime } from '../helper.js'
 import os from 'node:os'
+import fs from 'node:fs'
 
+async function handler({ jid }) {
 
-
-async function handler({sock, m,  text, jid, prefix, command }) {
-    const bullet = global.bullet || '↗️'
+    // ========================
+    // BASIC SYSTEM INFO
+    // ========================
     const cpus = os.cpus()
-    const arch = bullet + 'arch ' + os.arch()
-    const cpu_cores = bullet + 'core ' + cpus.length + ' core'
-    const cpu_name = bullet + 'cpu ' + cpus[0].model
-    const os_version = bullet + 'os ' + os.version()
+    const cpuModel = cpus[0].model
+    const cpuCores = cpus.length
 
-    const toGB = (byte) => (byte/1073741824).toFixed(2) + ' GB'
+    // ========================
+    // OS INFO (Ubuntu LTS)
+    // ========================
+    let osName = `${os.platform()} ${os.release()}`
+    try {
+        const osRelease = fs.readFileSync('/etc/os-release', 'utf8')
+        const match = osRelease.match(/^PRETTY_NAME="(.+)"$/m)
+        if (match) osName = match[1]
+    } catch {}
+
+    // ========================
+    // RAM
+    // ========================
     const ramTotal = os.totalmem()
     const ramFree = os.freemem()
-    const ramUsage = ramTotal - ramFree
+    const ramUsed = ramTotal - ramFree
+    const ramPercent = ((ramUsed / ramTotal) * 100).toFixed(1)
 
-    const ram = `${bullet}RAM ${toGB(ramTotal)}`
-    const node_version = bullet + 'node ' + process.version
+    // ========================
+    // DISK (root)
+    // ========================
+    const disk = fs.statfsSync('/')
+    const diskTotal = disk.blocks * disk.bsize
+    const diskFree = disk.bfree * disk.bsize
+    const diskUsed = diskTotal - diskFree
+    const diskPercent = ((diskUsed / diskTotal) * 100).toFixed(1)
 
-    const ram_usage = `${bullet}ram usage ${(ramUsage/ramTotal*100).toFixed(0)}% used. ${toGB(ramFree)} free.`
-    const nodeRuntime = bullet + 'bot runtime ' + msToReadableTime(parseInt(process.uptime())*1000)
-    const hostRuntime = bullet + 'host runtime ' + msToReadableTime(parseInt(os.uptime())*1000)
+    // ========================
+    // FORMATTERS
+    // ========================
+    const formatStorage = (bytes) => {
+        const gb = bytes / 1024 / 1024 / 1024
+        if (gb >= 1024) return (gb / 1024).toFixed(2) + ' TB'
+        return gb.toFixed(2) + ' GB'
+    }
 
-    const hardware = cpu_name + '\n' + cpu_cores + '\n' + ram
-    const software = os_version + '\n' + arch + '\n' + node_version
-    const system = hostRuntime + '\n' + ram_usage + '\n\n' + nodeRuntime
+    const uptime = msToReadableTime(os.uptime() * 1000)
+    const line = '============================='
 
-    const print = '*hardware*\n' + hardware + '\n\n*software*\n' + software + '\n\n*system*\n' + system
-    return await sendFancyText(jid, print, 'shaq', 'spesifikasi hardware dan software',null,false) 
-    
+    // ========================
+    // OUTPUT
+    // ========================
+    const output =
+`🌐 *NODE STATISTICS*
+by shaq
+\`\`\`
+${line}
+SERVER NODE
+${line}
+CPU Model : ${cpuModel}
+CPU Cores : ${cpuCores}
+OS        : ${osName}
+Arch      : ${os.arch()}
+Node      : ${process.version}
+${line}
+RESOURCE STATUS
+${line}
+RAM Usage : ${formatStorage(ramUsed)} / ${formatStorage(ramTotal)} (${ramPercent}%)
+Disk      : ${formatStorage(diskUsed)} / ${formatStorage(diskTotal)} (${diskPercent}%)
+Uptime    : ${uptime}
+${line}
+Status    : ONLINE 🟢
+${line}
+\`\`\``
+
+    return await sendFancyText(
+        jid,
+        output,
+        'shaq',
+        'node statistics',
+        null,
+        false
+    )
 }
-
-//handler.bypassPrefix = true
 
 handler.pluginName = 'spec'
 handler.command = ['spec']
 handler.alias = []
 handler.category = [Category.BOT]
-handler.help = 'liat spesifikasi hardware dan software'
+handler.help = 'lihat statistik node / server'
 
 export default handler

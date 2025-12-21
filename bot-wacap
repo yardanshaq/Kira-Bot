@@ -602,3 +602,39 @@ Closing open session in favor of incoming prekey bundle
 Closing open session in favor of incoming prekey bundle
 gagal meload plugin src/plugins/upload.js
 gagal meload plugin src/plugins/upload.js
+gagal meload plugin src/plugins/upload.js
+(node:138022) [https://github.com/node-fetch/node-fetch/issues/1167] DeprecationWarning: form-data doesn't follow the spec and requires special treatment. Use alternative package
+(Use `node --trace-deprecation ...` to show where the warning was created)
+gagal meload plugin src/plugins/upload.js
+gagal meload plugin src/plugins/upload.js
+gagal meload plugin src/plugins/upload.js
+gagal meload plugin src/plugins/upload.js
+gagal meload plugin src/plugins/upload.js
+gagal meload plugin src/plugins/upload.js
+gagal meload plugin src/plugins/spec.js
+gagal meload plugin src/plugins/upload.js
+gagal meload plugin src/plugins/spec.js
+gagal meload plugin src/plugins/upload.js
+gagal meload plugin src/plugins/spec.js
+gagal meload plugin src/plugins/upload.js
+gagal meload plugin src/plugins/upload.js
+gagal meload plugin src/plugins/spec.js
+gagal meload plugin src/plugins/upload.js
+gagal meload plugin src/plugins/upload.js
+TypeError: process.version is not a function
+    at handler (file:///root/angelina-bot/src/plugins/spec.js?t=1766275108508:54:25)
+    at file:///root/angelina-bot/index.js:312:27
+    at EventEmitter.listener (file:///root/angelina-bot/node_modules/baileys/lib/Utils/event-buffer.js:98:23)
+    at EventEmitter.emit (node:events:520:35)
+    at Object.flush (file:///root/angelina-bot/node_modules/baileys/lib/Utils/event-buffer.js:89:16)
+    at processNodeWithBuffer (file:///root/angelina-bot/node_modules/baileys/lib/Socket/messages-recv.js:1167:12)
+    at async processNode (file:///root/angelina-bot/node_modules/baileys/lib/Socket/messages-recv.js:1224:13)
+    at async WebSocketClient.<anonymous> (file:///root/angelina-bot/node_modules/baileys/lib/Socket/messages-recv.js:1229:9)
+gagal meload plugin src/plugins/spec.js
+gagal meload plugin src/plugins/upload.js
+gagal meload plugin src/plugins/upload.js
+gagal meload plugin src/plugins/upload.js
+gagal meload plugin src/plugins/upload.js
+gagal meload plugin src/plugins/upload.js
+gagal meload plugin src/plugins/upload.js
+gagal meload plugin src/plugins/upload.js
