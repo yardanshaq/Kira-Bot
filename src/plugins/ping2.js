@@ -12,7 +12,7 @@ async function handler({ jid }) {
 
 handler.pluginName = 'ping 2'
 handler.command = ['ping2']
-handler.alias = ['p2']
+handler.alias = ['p']
 handler.category = [C.BOT]
 handler.help = 'test kecepatan sendMessage bot.'
 

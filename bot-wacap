@@ -638,3 +638,17 @@ gagal meload plugin src/plugins/upload.js
 gagal meload plugin src/plugins/upload.js
 gagal meload plugin src/plugins/upload.js
 gagal meload plugin src/plugins/upload.js
+gagal meload plugin src/plugins/upload.js
+CT LIST ERROR: Error: HTTP 401: 
+    at proxmoxRequest (file:///root/angelina-bot/src/plugins/listvps.js?t=1766293920610:39:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async handler (file:///root/angelina-bot/src/plugins/listvps.js?t=1766293920610:53:24)
+    at async file:///root/angelina-bot/index.js:312:21
+    at async EventEmitter.listener (file:///root/angelina-bot/node_modules/baileys/lib/Utils/event-buffer.js:98:17)
+Error: HTTP 400: {"message":"Parameter verification failed.\n","errors":{"memory":"value must have a minimum value of 16"},"data":null}
+    at proxmoxFetch (file:///root/angelina-bot/src/plugins/cvps.js?t=1766293920610:35:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async createCT (file:///root/angelina-bot/src/plugins/cvps.js?t=1766293920610:186:16)
+    at async handler (file:///root/angelina-bot/src/plugins/cvps.js?t=1766293920610:247:5)
+    at async file:///root/angelina-bot/index.js:312:21
+    at async EventEmitter.listener (file:///root/angelina-bot/node_modules/baileys/lib/Utils/event-buffer.js:98:17)
