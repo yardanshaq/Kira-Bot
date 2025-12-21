@@ -652,3 +652,4 @@ Error: HTTP 400: {"message":"Parameter verification failed.\n","errors":{"memory
     at async handler (file:///root/angelina-bot/src/plugins/cvps.js?t=1766293920610:247:5)
     at async file:///root/angelina-bot/index.js:312:21
     at async EventEmitter.listener (file:///root/angelina-bot/node_modules/baileys/lib/Utils/event-buffer.js:98:17)
+gagal meload plugin src/plugins/cvps.js

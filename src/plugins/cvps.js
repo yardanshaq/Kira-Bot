@@ -278,8 +278,7 @@ async function handler({ m, text, jid }) {
       `User: root\n` +
       `Password: ${password}\n\n` +
       `🌐 Private IP: ${ip}\n` +
-      `RAM: ${ram} MB\nCPU: ${cpu} Core\nDisk: ${disk} GB\n\n` +
-      `📡 Port Mapping:\n${portResult.slice(-2000) || 'No Output'}`
+      `RAM: ${ram} MB\nCPU: ${cpu} Core\nDisk: ${disk} GB` 
     )
 
   } catch (e) {
