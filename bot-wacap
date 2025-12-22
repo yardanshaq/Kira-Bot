@@ -653,3 +653,28 @@ Error: HTTP 400: {"message":"Parameter verification failed.\n","errors":{"memory
     at async file:///root/angelina-bot/index.js:312:21
     at async EventEmitter.listener (file:///root/angelina-bot/node_modules/baileys/lib/Utils/event-buffer.js:98:17)
 gagal meload plugin src/plugins/cvps.js
+Error: HTTP 400: {"errors":{"password":"value must be at least 5 characters long"},"message":"Parameter verification failed.\n","data":null}
+    at proxmoxFetch (file:///root/angelina-bot/src/plugins/vpscreate.js?t=1766299429802:35:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async createCT (file:///root/angelina-bot/src/plugins/vpscreate.js?t=1766299429802:197:16)
+    at async handler (file:///root/angelina-bot/src/plugins/vpscreate.js?t=1766299429802:269:5)
+    at async file:///root/angelina-bot/index.js:312:21
+    at async EventEmitter.listener (file:///root/angelina-bot/node_modules/baileys/lib/Utils/event-buffer.js:98:17)
+Error handler ctlist-detail: Error: HTTP 401 no such token 'Bot' for user 'root@pam' 
+    at proxmoxRequest (file:///root/angelina-bot/src/plugins/vpslist.js?t=1766299429802:38:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async handler (file:///root/angelina-bot/src/plugins/vpslist.js?t=1766299429802:55:24)
+    at async file:///root/angelina-bot/index.js:312:21
+    at async EventEmitter.listener (file:///root/angelina-bot/node_modules/baileys/lib/Utils/event-buffer.js:98:17)
+Error: HTTP 400: {"data":null,"errors":{"memory":"value must have a minimum value of 16","password":"value must be at least 5 characters long"},"message":"Parameter verification failed.\n"}
+    at proxmoxFetch (file:///root/angelina-bot/src/plugins/vpscreate.js?t=1766299784135:35:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async createCT (file:///root/angelina-bot/src/plugins/vpscreate.js?t=1766299784135:197:16)
+    at async handler (file:///root/angelina-bot/src/plugins/vpscreate.js?t=1766299784135:269:5)
+    at async file:///root/angelina-bot/index.js:312:21
+    at async EventEmitter.listener (file:///root/angelina-bot/node_modules/baileys/lib/Utils/event-buffer.js:98:17)
+Closing open session in favor of incoming prekey bundle
+Closing open session in favor of incoming prekey bundle
+Closing open session in favor of incoming prekey bundle
+Closing open session in favor of incoming prekey bundle
+Closing open session in favor of incoming prekey bundle

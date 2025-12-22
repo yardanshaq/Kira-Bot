@@ -1,7 +1,7 @@
 /**
- * ┌─「 Proxmox VPS Manager 」
+ * ┌─「 Proxmox VPS Manager 」 
  * │
- * ├ Adapted for Angelina Bot
+ * ├ Converted from Tixo Bot
  * └─ Owner only
  */
 
@@ -18,8 +18,9 @@ const httpsAgent = new https.Agent({
   checkServerIdentity: () => undefined
 })
 
-/* ================= PROXMOX CORE ================= */
-
+/* =======================
+   PROXMOX CORE
+======================= */
 async function proxmoxFetch(url, method = 'POST', body = null) {
   const headers = { Authorization: PROXMOX_TOKEN }
   if (body) headers['Content-Type'] = 'application/x-www-form-urlencoded'
@@ -82,24 +83,27 @@ async function statusVPS(vmid) {
   )
 }
 
+// 🔥 LIST VPS DISINI
 async function listVPS() {
-  return proxmoxFetch(
+  const list = await proxmoxFetch(
     `${PROXMOX_BASE}/nodes/${NODE}/lxc`,
     'GET'
   )
+  return list
 }
 
-/* ================= BOT HANDLER ================= */
-
+/* =======================
+   ANGELINA HANDLER
+======================= */
 async function handler({ m, text, jid }) {
-  const args = text?.trim().split(/\s+/) || []
   const reply = (msg) => sendText(jid, msg, m)
+  const args = text?.trim().split(/\s+/) || []
 
   try {
     const action = (args[0] || '').toLowerCase()
     const vmid = args[1]
 
-    if (!['start', 'stop', 'restart', 'delete', 'status', 'list'].includes(action)) {
+    if (!['start', 'stop', 'restart', 'delete', 'status', 'list'].includes(action))
       return reply(
         `⚙️ VPS Manager\n\n` +
         `.vps list\n` +
@@ -109,20 +113,22 @@ async function handler({ m, text, jid }) {
         `.vps restart <vmid>\n` +
         `.vps delete <vmid>`
       )
-    }
 
     /* ================= LIST ================= */
     if (action === 'list') {
       reply('📡 Mengambil data VPS...')
-      const vps = await listVPS()
 
+      const vps = await listVPS()
       if (!vps.length) return reply('❌ Tidak ada VPS')
 
-      const txt = vps.map(v =>
-        `VMID   : ${v.vmid}\n` +
-        `Nama   : ${v.name || '-'}\n` +
-        `Status : ${v.status}`
-      ).join('\n──────────────\n')
+      const txt = vps
+        .map(v =>
+          `VMID: ${v.vmid}\n` +
+          `Nama: ${v.name || '-'}\n` +
+          `Status: ${v.status}\n` +
+          `IP: ${v.ip || 'Unknown'}\n`
+        )
+        .join('\n──────────────\n')
 
       return reply(`📋 LIST VPS\n\n${txt}`)
     }
@@ -157,21 +163,22 @@ async function handler({ m, text, jid }) {
 
       return reply(
         `📊 STATUS VPS ${vmid}\n\n` +
-        `State   : ${s.status}\n` +
-        `Uptime  : ${s.uptime}s\n` +
-        `CPU     : ${(s.cpu * 100).toFixed(1)}%\n` +
-        `RAM     : ${Math.round(s.mem / 1024 / 1024)} MB`
+        `State: ${s.status}\n` +
+        `Uptime: ${s.uptime}s\n` +
+        `CPU: ${(s.cpu * 100).toFixed(1)}%\n` +
+        `RAM Used: ${Math.round(s.mem / 1024 / 1024)} MB`
       )
     }
 
-    /* ================= DELETE ================= */
+    /* ================= SAFE DELETE ================= */
     if (action === 'delete') {
       reply(`🗑️ Mengecek status VPS ${vmid}...`)
       const s = await statusVPS(vmid)
 
       if (s.status === 'running') {
-        reply('⚠️ VPS masih running, menghentikan...')
+        reply('⚠️ VPS masih running, stop dulu...')
         await stopVPS(vmid)
+        reply('🛑 VPS berhasil distop, lanjut hapus...')
       }
 
       await deleteVPS(vmid)
@@ -184,13 +191,14 @@ async function handler({ m, text, jid }) {
   }
 }
 
-/* ================= METADATA ================= */
-
+/* =======================
+   METADATA
+======================= */
 handler.pluginName = 'Proxmox VPS Manager'
 handler.command = ['vps']
 handler.alias = []
 handler.category = [Category.OWNER]
-handler.help = 'Manage VPS Proxmox (start/stop/restart/delete/list)'
+handler.help = 'Kelola VPS Proxmox (start/stop/restart/delete/status/list)'
 handler.preventDelete = true
 
 export default handler

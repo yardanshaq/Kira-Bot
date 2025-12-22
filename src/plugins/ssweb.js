@@ -26,7 +26,7 @@ async function handler({ m, jid, text }) {
       jid,
       {
         image: buffer,
-        caption: `${targetUrl}\n> Karudo`
+        caption: `${targetUrl}\n> Kira`
       },
       { quoted: m }
     )

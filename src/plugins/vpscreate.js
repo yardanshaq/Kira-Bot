@@ -1,7 +1,7 @@
 /**
  * ┌─「 Proxmox CVPS 」 
  * │
- * ├ Adapted for Angelina Bot
+ * ├ Converted from Tixo Bot
  * └─ Owner only
  */
 
@@ -82,8 +82,15 @@ async function checkVMID(vmid) {
       'GET'
     )
     return true
-  } catch {
-    return false
+  } catch (e) {
+    const msg = e.message || ''
+    if (
+      msg.includes('404') ||
+      msg.includes('does not exist') ||
+      msg.includes('Configuration file') ||
+      msg.includes('No such file')
+    ) return false
+    throw e
   }
 }
 
@@ -109,6 +116,9 @@ async function waitForCTReady(vmid, timeout = 30000) {
   throw new Error('Timeout waiting CT ready')
 }
 
+/* =======================
+   GET TEMPLATE API
+======================= */
 async function getTemplates() {
   const data = await proxmoxFetch(
     `${PROXMOX_BASE}/nodes/${NODE}/storage/local/content?content=vztmpl`,
@@ -118,7 +128,7 @@ async function getTemplates() {
 }
 
 /* =======================
-   SSH HOST
+ SSH HOST
 ======================= */
 async function sshExecHost(command) {
   return new Promise((resolve, reject) => {
@@ -162,7 +172,7 @@ async function waitHostSSH(timeout = 60000) {
 }
 
 /* =======================
-   CREATE CT
+ CREATE CT
 ======================= */
 async function createCT(opts) {
   const { vmid, hostname, ostemplate, ip, password, ram, cpu, disk } = opts
@@ -193,14 +203,17 @@ async function createCT(opts) {
   await waitForTaskDone(upid)
 
   const ok = await waitConfigExists(vmid)
-  if (!ok) throw new Error(await getTaskLog(upid))
+  if (!ok) {
+    const log = await getTaskLog(upid)
+    throw new Error(`CT gagal dibuat!\n\n${log}`)
+  }
 
   await new Promise(r => setTimeout(r, 4000))
   return true
 }
 
 /* =======================
-   ANGELINA BOT HANDLER
+ ANGELINA HANDLER
 ======================= */
 async function handler({ m, text, jid }) {
   const reply = (msg) => sendText(jid, msg, m)
@@ -208,16 +221,15 @@ async function handler({ m, text, jid }) {
 
   try {
 
-    // LIST OS
     if (args[0] === 'os') {
       const list = await getTemplates()
-      const txt = list.map((v, i) =>
-        `${i + 1}. ${v.replace('local:vztmpl/', '')}`
-      ).join('\n')
+      const txt = list
+        .map((v, i) => `${i + 1}. ${v.replace('local:vztmpl/', '')}`)
+        .join('\n')
 
       return reply(
-        `📦 Daftar OS Proxmox:\n\n${txt}\n\n` +
-        `Contoh:\n.cvps nama 3 password`
+        `📦 Daftar OS di Proxmox:\n\n${txt}\n\n` +
+        `Gunakan nomor, contoh:\n.cvps nama 3 password`
       )
     }
 
@@ -230,40 +242,58 @@ async function handler({ m, text, jid }) {
       disk = '8'
     ] = args
 
-    if (!hostname || !osIndex || !password)
+    if (!hostname || !osIndex || !password) {
       return reply(
-        `Format:\n.cvps <hostname> <no_os> <password> <ram> <cpu> <disk>\n\n` +
-        `Cek OS: .cvps os`
+        "Format:\n.cvps <hostname> <no_os> <password> <ram> <cpu> <disk>\n\n(ram satuan MB) (disk satuan GB)\n" +
+"contoh command:\n" +
+"cvps wolep 4 wolep123 4096 2 30\n\n" +
+        "Cek OS: .cvps os"
       )
+    }
 
     reply('📦 Mengambil OS...')
     const templates = await getTemplates()
+
     const index = parseInt(osIndex) - 1
-    if (!templates[index]) return reply('❌ OS tidak ditemukan')
+    if (isNaN(index) || !templates[index])
+      return reply('❌ OS tidak ditemukan.')
 
     const ostemplate = templates[index]
-    const vmid = await getNextVMID()
-    const ip = `192.168.11.${vmid - 80}`
+    reply(`🖥️ OS: ${ostemplate}`)
 
-    reply(`🚀 Membuat VPS...\nVMID: ${vmid}\nIP: ${ip}`)
+    const vmid = await getNextVMID()
+    reply(`📎 VMID: ${vmid}`)
+
+    const ip = `192.168.11.${vmid - 80}`
+    reply(`🌐 IP: ${ip}`)
+
+    reply('🚀 Membuat VPS...')
     await createCT({ vmid, hostname, ostemplate, ip, password, ram, cpu, disk })
 
+    reply('📝 Start VPS...')
     await startCT(vmid)
+
+    reply('⏳ Booting...')
     await waitForCTReady(vmid)
+
+    reply('⏳ Menunggu SSH Host...')
     await waitHostSSH()
 
-    reply('🌐 Mengatur port forwarding...')
+    reply('🔐 Setup SSH di CT...')
+    await sshExecHost(
+      `pct exec ${vmid} -- bash -c "wget -qO- https://raw.githubusercontent.com/Nauvalunesa/Setupbot/main/sshsetup.sh | bash"`
+    )
+
+    reply('🌐 Setup Port di Host...')
     const portResult = await sshExecHost(
       `wget -qO- https://raw.githubusercontent.com/Nauvalunesa/Setupbot/main/Port.sh | bash -s ${ip}`
     )
 
-    // Ambil IP publik
     let publicIp =
       (portResult.match(/IP Publik:\s*([\d.]+)/)?.[1]) ||
       (portResult.match(/(\d+\.\d+\.\d+\.\d+):\d+\s+→/)?.[1]) ||
       HOST_IP
 
-    // Ambil SSH port
     let sshPortMatch = portResult.match(
       new RegExp(`${publicIp}:(\\d+)\\s+→\\s+${ip}:22`)
     )
@@ -271,14 +301,11 @@ async function handler({ m, text, jid }) {
 
     reply(
       `✅ VPS SIAP!\n\n` +
-      `VMID: ${vmid}\nHostname: ${hostname}\nOS: ${ostemplate.replace('local:vztmpl/', '')}\n\n` +
-      `🔐 LOGIN INFO\n` +
-      `IP Public: ${publicIp}\n` +
-      `SSH Port: ${sshPort}\n` +
-      `User: root\n` +
-      `Password: ${password}\n\n` +
-      `🌐 Private IP: ${ip}\n` +
-      `RAM: ${ram} MB\nCPU: ${cpu} Core\nDisk: ${disk} GB` 
+      `VMID: ${vmid}\nHostname: ${hostname}\n` +
+      `OS: ${ostemplate.replace('local:vztmpl/', '')}\n\n` +
+      `🔐 LOGIN INFO\nIP Public: ${publicIp}\nSSH Port: ${sshPort}\n` +
+      `User: root\nPassword: ${password}\n\n` +
+      `🌐 Private IP: ${ip}\nRAM: ${ram} MB\nCPU: ${cpu} Core\nDisk: ${disk} GB`
     )
 
   } catch (e) {

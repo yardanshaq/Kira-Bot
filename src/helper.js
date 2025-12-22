@@ -672,6 +672,7 @@ export class Category {
     static BOT = 'bot'
     static OTHER = 'other'
     static OWNER = 'owner'
+    static VPS = 'vps'
     static DEBUG = 'debug'
     static GROUP = 'group'
     static AI = 'ai'
